@@ -143,6 +143,13 @@ export default class TemplatePlugin implements ViewPlugin {
           );
 
           if (templateNode) {
+            if (templateNode.type === NodeType.MultiNode) {
+              templateNode.values.forEach((v) => {
+                // eslint-disable-next-line no-param-reassign
+                v.parent = templateNode;
+              });
+            }
+
             return templateNode;
           }
         }
